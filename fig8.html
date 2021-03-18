@@ -3,6 +3,9 @@
 <head>
 <title>Eleni's Figure 8</title>
 
+<body style="background-color:ivory;">
+<p style="font-size:40px; color:purple;"><b>The Dizzy Figure 8</b></p>
+
 <script>
     
     var canvas;    // DOM object corresponding to the canvas
@@ -105,18 +108,18 @@
     }
     
     function animate() {
-      var R = rotateMatrix(Math.PI/20);
+      var R = rotateMatrix(Math.PI/10);
       var F = reflectionMatrix()
       var T = translateMatrix(100, 0);
       pushMatrix(R);
-      graphics.fillRect(10, 10, 50, 50);
+      graphics.fillRect(10, 10, 50, 60);
 
       a += Math.PI/20;
       if (b == 0) {
-        graphics.fillStyle = "pink";
+        graphics.fillStyle = "lavenderblush";
         b = 1;
       } else {
-        graphics.fillStyle = "peachpuff"
+        graphics.fillStyle = "lightblue"
         b = 0;
       }
 
@@ -133,11 +136,11 @@
     }
 
     function draw() {
-        var T = translateMatrix(200, 200);
+        var T = translateMatrix(110, 150);
         
         pushMatrix(T);
 
-        setInterval(animate, 10);
+        setInterval(animate, 15);
     }
 
     function init() {
@@ -153,8 +156,9 @@
 
 </head>
 <body onload="init()">
-  <a href="index.html">Eleni's Practice Transformation Matrices</a><br>
-  <a href="my_anim.html">Eleni's Animation</a><br>
-  <canvas id="theCanvas" width="500" height="500"></canvas>
+	<p style=color:purple;>See more work here:</p>
+    <a href="index.html">Eleni's Practice Transformation Matrices</a><br>
+    <a href="my_anim.html">Eleni's Animation</a><br>
+    <canvas id="theCanvas" width="500" height="500"></canvas>
 </body>
 </html>
