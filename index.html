@@ -107,7 +107,7 @@
     }
     
     function draw() {
-        graphics.fillRect(0,0,50,50);
+        graphics.fillRect(0,0,300,300);
 
         S = scaleMatrix(1.5, 2);
         pushMatrix(S);
@@ -127,12 +127,12 @@
         F = reflectionMatrix();
         pushMatrix(F);
         graphics.fillStyle = "darkslateblue"
-        graphics.fillRect(0, 0, 50, 50);
+        graphics.fillRect(0, 0, 100, 50);
 
         H = shearMatrix(1);
         pushMatrix(H);
         graphics.fillStyle = "lightpink";
-        graphics.fillRect(0, 0, 50, 50)
+        graphics.fillRect(0, 0, 50, 200)
 
     }
 
