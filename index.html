@@ -1,7 +1,10 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
 <head>
 <title>Eleni's Practice Transformation Matrices</title>
+<body style="background-color:lightsteelblue;">
+
+<p style="font-size:20px; color:ivory;"><b>The Unconventional Flower in the World of Matrix</b></p>
 
 <script>
     /*
@@ -9,6 +12,7 @@
      * Partner name (if pair programming): N/A
      * Reflections on this assignment: Initially struggled to get the animation going. 
      * Really wanted to have the ability to switch from one animation to another.
+     * Sources: //https://www.w3schools.com/html/html_styles.asp
      */
     
     var canvas;    // DOM object corresponding to the canvas
@@ -107,19 +111,21 @@
     }
     
     function draw() {
+    
         graphics.fillRect(0,0,500,500);
 
-        S = scaleMatrix(1.5, 2);
-        pushMatrix(S);
-        graphics.fillStyle = "darkmagenta";
-        graphics.fillRect(100, 100, 300, 300);
 
-        var R = rotateMatrix(.2);
+        S = scaleMatrix(1, 2);
+        pushMatrix(S);
+        graphics.fillStyle = "darkgreen";
+        graphics.fillRect(190, 170, 50, 300);
+        
+        R = rotateMatrix(.35);
         pushMatrix(R);
         graphics.fillStyle = "lightsteelblue";
-        graphics.fillRect(100, 100, 50, 50);
+        graphics.fillRect(140, 15, 200, 30);
 
-        T = translateMatrix(160, 80);
+        T = translateMatrix(250, 60);
         pushMatrix(T);
         graphics.fillStyle = "lightslategrey";
         graphics.fillRect(0, 0, 100, 50);
@@ -128,11 +134,18 @@
         pushMatrix(F);
         graphics.fillStyle = "darkslateblue"
         graphics.fillRect(0, 0, 100, 50);
-
+        
         H = shearMatrix(1);
         pushMatrix(H);
         graphics.fillStyle = "lightpink";
-        graphics.fillRect(0, 0, 50, 200)
+        graphics.fillRect(0, 0, 50, 50)
+        
+        F = reflectionMatrix();
+        pushMatrix(F);
+        graphics.fillStyle = "thistle"
+        graphics.fillRect(0, 0, 100, 50);
+       
+   
 
     }
 
@@ -149,8 +162,11 @@
 
 </head>
 <body onload="init()">
+	<p style=color:ivory;>See more work here:</p>
     <a href="fig8.html"> Eleni's Figure 8 </a><br>
     <a href="my_anim.html"> Eleni's Animation </a><br>
+    <p></p>
+    <p></p>
     <canvas id="theCanvas" width="500" height="500"></canvas>
 </body>
 </html>
