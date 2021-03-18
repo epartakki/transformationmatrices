@@ -107,17 +107,17 @@
     }
     
     function draw() {
-        graphics.fillRect(0,0,300,300);
+        graphics.fillRect(0,0,500,500);
 
         S = scaleMatrix(1.5, 2);
         pushMatrix(S);
         graphics.fillStyle = "darkmagenta";
-        graphics.fillRect(0, 0, 50, 50);
+        graphics.fillRect(50, 50, 100, 100);
 
         var R = rotateMatrix(.2);
         pushMatrix(R);
         graphics.fillStyle = "lightsteelblue";
-        graphics.fillRect(0, 0, 50, 50);
+        graphics.fillRect(100, 100, 50, 50);
 
         T = translateMatrix(100, 50);
         pushMatrix(T);
