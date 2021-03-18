@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Eleni's Animation</title>
+
+<script>
+
+    var canvas;    // DOM object corresponding to the canvas
+    var graphics;  // 2D graphics context for drawing on the canvas
+
+    var a = 0;
+
+    // this GLOBAL variable is responsible for maintaining the current
+    // set of transformations (3x3)
+    var currMatrix;
+
+    function newMatrix(rows, cols) {
+      var newM = new Array(rows);
+      for (let i = 0; i < rows; i++) {
+        newM[i] = new Array(cols)
+      }
+    }
+
+    function identityMatrix() {
+      var I = new Array(3);
+      I[0] = [1, 0, 0];
+      I[1] = [0, 1, 0];
+      I[2] = [0, 0, 1];
+      return I;
+    }
+
+    function matrixMultiply(M1, M2) {
+      var rows = M1.length;
+      var cols = M2[0].length;
+      var newM = new Array(rows);
+
+      for (let i = 0; i < rows; i++) {
+        newM[i] = new Array(cols);
+        for (let j = 0; j < cols; j++) {
+          newM[i][j] = 0;
+        }
+      }
+
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          for (let term = 0; term < rows; term++) {
+            newM[row][col] = newM[row][col] + M1[row][term] * M2[term][col];
+          }
+        }
+      }
+      return newM;
+    }
+
+    function scaleMatrix(sx, sy) {
+      var S = new Array(3);
+      S[0] = [sx, 0, 0];
+      S[1] = [0, sy, 0];
+      S[2] = [0, 0, 1];
+      return S;
+    }
+
+    function rotateMatrix(theta) {
+      var R = new Array(3);
+      R[0] = [Math.cos(theta), -1 * Math.sin(theta), 0];
+      R[1] = [Math.sin(theta), Math.cos(theta), 0];
+      R[2] = [0, 0, 1];
+      return R;
+    }
+
+    function translateMatrix(tx, ty) {
+      var T = new Array(3);
+      T[0] = [1, 0, tx];
+      T[1] = [0, 1, ty];
+      T[2] = [0, 0, 1];
+      return T;
+    }
+
+    function reflectionMatrix() {
+      var F = new Array(3);
+      F[0] = [-1, 0, 0];
+      F[1] = [0, 1, 0];
+      F[2] = [0, 0, 1];
+      return F;
+    }
+
+    function shearMatrix(lambda) {
+      var H = new Array(3);
+      H[0] = [1, 0, 0];
+      H[1] = [lambda, 1, 0];
+      H[2] = [0, 0, 1];
+      return H;
+    }
+
+    // this function multiplies the current matrix by another transformation,
+    // then updates the current matrix to the result
+    function pushMatrix(newMatrix) {
+        currMatrix = matrixMultiply(currMatrix, newMatrix); // order very important!
+
+        // note that the setTransform method clear the current matrix and then
+        // sets it to be this new one (it does not build up the transformations!)
+        graphics.setTransform(currMatrix[0][0],currMatrix[1][0],
+                           currMatrix[0][1],currMatrix[1][1],
+                           currMatrix[0][2],currMatrix[1][2]);
+    }
+    
+    function loopPush(matrix, num) {
+      for (let i = 0; i < num; i++) {
+        pushMatrix(matrix);
+      }
+    }
+
+    function animate() {
+      var speed = 1;
+      a += 1;
+      if (a > 250) {
+        a = 0;
+      }
+      graphics.save(); // saves current set of transformations
+      graphics.setTransform(1, 0, 0, 1, 0, 0); // resets matrix to identity
+      graphics.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
+      graphics.restore(); // restores previous transformations 
+
+      var R = rotateMatrix(0.05);
+      var T1 = translateMatrix(-speed, 0);
+      var T1back = translateMatrix(speed, 0);
+      var T2 = translateMatrix(speed, speed);
+      var T2back = translateMatrix(-speed, -speed);
+      var T3 = translateMatrix(-speed, speed);
+      var T3back = translateMatrix(speed, -speed);
+      var T4 = translateMatrix(speed, -speed);
+      var T4back = translateMatrix(-speed, speed);
+      var T5 = translateMatrix(0, -speed);
+      var T5back = translateMatrix(0, speed);
+      var T6 = T3back;
+      var T6back = T3;
+
+      pushMatrix(R);
+      
+      loopPush(T1, a);
+      graphics.fillStyle = "teal";
+      graphics.fillRect(-2, -2, 52, 52);
+      loopPush(T1back, a); 
+      
+      loopPush(T2, a);
+      graphics.fillStyle = "thistle";
+      graphics.fillRect(10, 10, 55, 55);
+      loopPush(T2back, a);
+
+      loopPush(T3, a);
+      graphics.fillStyle = "wheat";
+      graphics.fillRect(30, 30, 60, 60);
+      loopPush(T3back, a);
+
+      loopPush(T4, a);
+      graphics.fillStyle ="peru";
+      graphics.fillRect(0, 0, 50, 50);
+      loopPush(T4back, a); 
+      
+      loopPush(T5, a);
+      graphics.fillRect(20, 20, 60, 60);
+      loopPush(T5back, a);
+
+      loopPush(T6, a);
+      graphics.fillStyle = "seagreen";
+      graphics.fillRect(0, 0, 50, 50);
+      loopPush(T6back, a);
+    }
+   
+    
+    function draw() {
+        T = translateMatrix(220, 120);
+        pushMatrix(T);
+        graphics.fillRect(0,0,50,50);
+        setInterval(animate, 10);
+
+    }
+
+    function init() {
+        canvas = document.getElementById("theCanvas");
+        graphics = canvas.getContext("2d");
+        
+      currMatrix = identityMatrix();
+
+        draw();  // draw something on the canvas
+    }
+</script>
+
+
+</head>
+<body onload="init()">
+  <a href="index.html">Eleni's Practice Transformation Matrices</a><br>
+  <a href="fig8.html">Eleni's Figure 8</a><br>
+  <canvas id="theCanvas" width="500" height="500"></canvas>
+</body>
+</html>    
