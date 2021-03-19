@@ -4,7 +4,7 @@
 <title>Eleni's Figure 8</title>
 
 <body style="background-color:ivory;">
-<p style="font-size:40px; color:purple;"><b>The Dizzy Figure 8</b></p>
+<p style="font-size:30px; color:purple;"><b>The Dizzy Figure 8 Pretzel</b></p>
 
 <script>
     
@@ -112,22 +112,22 @@
       var F = reflectionMatrix()
       var T = translateMatrix(100, 0);
       pushMatrix(R);
-      graphics.fillRect(10, 10, 50, 60);
+      graphics.fillRect(5, 30, 30, 60);
 
       a += Math.PI/20;
       if (b == 0) {
-        graphics.fillStyle = "lavenderblush";
+        graphics.fillStyle = "peru";
         b = 1;
       } else {
-        graphics.fillStyle = "lightblue"
+        graphics.fillStyle = "saddlebrown"
         b = 0;
       }
 
-      if (a == 2 * Math.PI) {
+      if (a == 1 * Math.PI) {
         pushMatrix(T);
         pushMatrix(F);
       }
-      if (a > 4 * Math.PI) {
+      if (a > 3 * Math.PI) {
         pushMatrix(T);
         pushMatrix(F);
         a = 0;
@@ -140,7 +140,7 @@
         
         pushMatrix(T);
 
-        setInterval(animate, 15);
+        setInterval(animate, 30);
     }
 
     function init() {
