@@ -108,13 +108,13 @@
     }
     
     function animate() {
-      var R = rotateMatrix(Math.PI/10);
-      var F = reflectionMatrix()
-      var T = translateMatrix(100, 0);
+      R = rotateMatrix(Math.PI/10);
+      F = reflectionMatrix()
+      T = translateMatrix(90, 0);
       pushMatrix(R);
-      graphics.fillRect(5, 30, 30, 60);
+      graphics.fillRect(50, 30, 30, 60);
 
-      a += Math.PI/20;
+      a = a + Math.PI/20;
       if (b == 0) {
         graphics.fillStyle = "peru";
         b = 1;
@@ -132,15 +132,16 @@
         pushMatrix(F);
         a = 0;
       }
-     
     }
+    
 
     function draw() {
-        var T = translateMatrix(110, 150);
+        T = translateMatrix(110, 150);
+        
+		//https://www.w3schools.com/jsref/met_win_setinterval.asp
+        var interval = setInterval(animate,50);
         
         pushMatrix(T);
-
-        setInterval(animate, 30);
     }
 
     function init() {

@@ -2,10 +2,8 @@
 <html>
 <head>
 <title>Eleni's Animation</title>
-
 <body style="background-color:lightgrey;">
-<p style="font-size:50px; color:brown;"><b>Trapped in Animation</b></p>
-
+<p style="font-size:40px; color:brown;"><b>Trapped in Animation</b></p>
 <script>
 
     var canvas;    // DOM object corresponding to the canvas
@@ -106,16 +104,16 @@
                            currMatrix[0][2],currMatrix[1][2]);
     }
     
-    function loopPush(matrix, num) {
+    function rep(matrix, num) {
       for (let i = 0; i < num; i++) {
         pushMatrix(matrix);
       }
     }
 
     function animate() {
-      var speed = 1;
-      a += 1;
-      if (a > 250) {
+      var speed = 0.3;
+      a = a + 1;
+      if (a > 150) {
         a = 0;
       }
       graphics.save(); // saves current set of transformations
@@ -125,56 +123,60 @@
 
       var R = rotateMatrix(0.05);
       var T1 = translateMatrix(-speed, 0);
-      var T1back = translateMatrix(speed, 0);
+      var T1r = translateMatrix(speed, 0);
       var T2 = translateMatrix(speed, speed);
-      var T2back = translateMatrix(-speed, -speed);
+      var T2r = translateMatrix(-speed, -speed);
       var T3 = translateMatrix(-speed, speed);
-      var T3back = translateMatrix(speed, -speed);
+      var T3r = translateMatrix(speed, -speed);
       var T4 = translateMatrix(speed, -speed);
-      var T4back = translateMatrix(-speed, speed);
+      var T4r = translateMatrix(-speed, speed);
       var T5 = translateMatrix(0, -speed);
-      var T5back = translateMatrix(0, speed);
-      var T6 = T3back;
-      var T6back = T3;
+      var T5r = translateMatrix(0, speed);
+      var T6 = T3r;
+      var T6r = T3;
 
       pushMatrix(R);
       
-      loopPush(T1, a);
+      rep(T1, a);
       graphics.fillStyle = "teal";
       graphics.fillRect(-2, -2, 52, 52);
-      loopPush(T1back, a); 
+      rep(T1r, a); 
       
-      loopPush(T2, a);
+      rep(T2, a);
       graphics.fillStyle = "thistle";
       graphics.fillRect(10, 10, 55, 55);
-      loopPush(T2back, a);
+      rep(T2r, a);
 
-      loopPush(T3, a);
+      rep(T3, a);
       graphics.fillStyle = "wheat";
       graphics.fillRect(30, 30, 60, 60);
-      loopPush(T3back, a);
+      rep(T3r, a);
 
-      loopPush(T4, a);
+      rep(T4, a);
       graphics.fillStyle ="peru";
-      graphics.fillRect(0, 0, 50, 50);
-      loopPush(T4back, a); 
+      graphics.fillRect(50, 50, 50, 50);
+      rep(T4r, a); 
       
-      loopPush(T5, a);
-      graphics.fillRect(20, 20, 60, 60);
-      loopPush(T5back, a);
+      rep(T5, a);
+      graphics.fillStyle ="ivory";
+      graphics.fillRect(5, 5, 30, 30);
+      rep(T5r, a);
 
-      loopPush(T6, a);
+      rep(T6, a);
       graphics.fillStyle = "seagreen";
       graphics.fillRect(0, 0, 50, 50);
-      loopPush(T6back, a);
+      rep(T6r, a);
     }
-   
     
+    
+ 
     function draw() {
-        T = translateMatrix(220, 120);
+        T = translateMatrix(250, 170);
         pushMatrix(T);
-        graphics.fillRect(0,0,50,50);
-        setInterval(animate, 10);
+        graphics.fillRect(0,0,20,20);
+        //https://www.w3schools.com/jsref/met_win_setinterval.asp
+        var interval = setInterval(animate, 10);
+        
 
     }
 
