@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Eleni's Practice Transformation Matrices</title>
+  <title>Eleni's Practice Transformation Matrices</title>
+
 <body style="background-color:lightsteelblue;">
 
-<p style="font-size:20px; color:ivory;"><b>The Unconventional Flower in the World of Matrix</b></p>
+  <p style="font-size:20px; color:ivory;"><b>The Unconventional Flower in the World of Matrix</b></p>
 
-<script>
+  <script>
     /*
      * Name:  Eleni Partakki
      * Partner name (if pair programming): N/A
@@ -16,7 +18,7 @@
      * simply because it is easier to bounce ideas off of other people and I do not think that T/A hours are enough.
      * Sources for styling: //https://www.w3schools.com/html/html_styles.asp
      */
-    
+
     var canvas;    // DOM object corresponding to the canvas
     var graphics;  // 2D graphics context for drawing on the canvas
 
@@ -31,7 +33,7 @@
         newM[i] = new Array(cols)
       }
     }
-  
+
     //Matrix Multiplication
     function matrixMultiply(M1, M2) {
       var rows = M1.length;
@@ -56,11 +58,11 @@
 
     //Identity from 2D Transformation Summary
     function identityMatrix() {
-        var I = new Array(3);
-        I[0] = [1, 0, 0];
-        I[1] = [0, 1, 0];
-       I[2] = [0, 0, 1];
-       return I;
+      var I = new Array(3);
+      I[0] = [1, 0, 0];
+      I[1] = [0, 1, 0];
+      I[2] = [0, 0, 1];
+      return I;
     }
 
     //Scaling from 2D Transformation Summary
@@ -111,72 +113,74 @@
     // this function multiplies the current matrix by another transformation,
     // then updates the current matrix to the result
     function pushMatrix(newMatrix) {
-        currMatrix = matrixMultiply(currMatrix, newMatrix); // order very important!
+      currMatrix = matrixMultiply(currMatrix, newMatrix); // order very important!
 
-        // note that the setTransform method clear the current matrix and then
-        // sets it to be this new one (it does not build up the transformations!)
-        graphics.setTransform(currMatrix[0][0],currMatrix[1][0],
-                           currMatrix[0][1],currMatrix[1][1],
-                           currMatrix[0][2],currMatrix[1][2]);
+      // note that the setTransform method clear the current matrix and then
+      // sets it to be this new one (it does not build up the transformations!)
+      graphics.setTransform(currMatrix[0][0], currMatrix[1][0],
+        currMatrix[0][1], currMatrix[1][1],
+        currMatrix[0][2], currMatrix[1][2]);
     }
-    
+
     function draw() {
-    
-        graphics.fillRect(0,0,500,500);
+
+      graphics.fillRect(0, 0, 500, 500);
 
 
-        S = scaleMatrix(1, 2);
-        pushMatrix(S);
-        graphics.fillStyle = "darkgreen";
-        graphics.fillRect(190, 170, 50, 300);
-        
-        R = rotateMatrix(.35);
-        pushMatrix(R);
-        graphics.fillStyle = "lightsteelblue";
-        graphics.fillRect(140, 15, 200, 30);
+      S = scaleMatrix(1, 2);
+      pushMatrix(S);
+      graphics.fillStyle = "darkgreen";
+      graphics.fillRect(190, 170, 50, 300);
 
-        T = translateMatrix(250, 60);
-        pushMatrix(T);
-        graphics.fillStyle = "lightslategrey";
-        graphics.fillRect(0, 0, 100, 50);
+      R = rotateMatrix(.35);
+      pushMatrix(R);
+      graphics.fillStyle = "lightsteelblue";
+      graphics.fillRect(140, 15, 200, 30);
 
-        F = reflectionMatrix();
-        pushMatrix(F);
-        graphics.fillStyle = "darkslateblue"
-        graphics.fillRect(0, 0, 100, 50);
-        
-        H = shearMatrix(1);
-        pushMatrix(H);
-        graphics.fillStyle = "lightpink";
-        graphics.fillRect(0, 0, 50, 50)
-        
-        F = reflectionMatrix();
-        pushMatrix(F);
-        graphics.fillStyle = "thistle"
-        graphics.fillRect(0, 0, 100, 50);
-       
-   
+      T = translateMatrix(250, 60);
+      pushMatrix(T);
+      graphics.fillStyle = "lightslategrey";
+      graphics.fillRect(0, 0, 100, 50);
+
+      F = reflectionMatrix();
+      pushMatrix(F);
+      graphics.fillStyle = "darkslateblue"
+      graphics.fillRect(0, 0, 100, 50);
+
+      H = shearMatrix(1);
+      pushMatrix(H);
+      graphics.fillStyle = "lightpink";
+      graphics.fillRect(0, 0, 50, 50)
+
+      F = reflectionMatrix();
+      pushMatrix(F);
+      graphics.fillStyle = "thistle"
+      graphics.fillRect(0, 0, 100, 50);
+
+
 
     }
 
     function init() {
-        canvas = document.getElementById("theCanvas");
-        graphics = canvas.getContext("2d");
-        
-        currMatrix = identityMatrix();
+      canvas = document.getElementById("theCanvas");
+      graphics = canvas.getContext("2d");
 
-        draw();  // draw something on the canvas
+      currMatrix = identityMatrix();
+
+      draw();  // draw something on the canvas
     }
-</script>
+  </script>
 
 
-</head>
-<body onload="init()">
-	<p style=color:ivory;>See more work here:</p>
+  </head>
+
+  <body onload="init()">
+    <p style=color:ivory;>See more work here:</p>
     <a href="fig8.html"> Eleni's Figure 8 </a><br>
     <a href="my_anim.html"> Eleni's Animation </a><br>
     <p></p>
     <p></p>
     <canvas id="theCanvas" width="500" height="500"></canvas>
-</body>
+  </body>
+
 </html>
