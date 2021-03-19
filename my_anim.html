@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>Eleni's Animation</title>
-<body style="background-color:lightgrey;">
-<p style="font-size:40px; color:brown;"><b>Trapped in Animation</b></p>
+<body style="background-color:black;">
+<p style="font-size:40px; color:white;"><b>Trapped in Animation</b></p>
 <script>
 
     var canvas;    // DOM object corresponding to the canvas
@@ -113,7 +113,7 @@
     function animate() {
       var speed = 0.3;
       a = a + 1;
-      if (a > 150) {
+      if (a > 120) {
         a = 0;
       }
       graphics.save(); // saves current set of transformations
@@ -121,21 +121,21 @@
       graphics.clearRect(0, 0, canvas.width, canvas.height); // clears canvas
       graphics.restore(); // restores previous transformations 
 
-      var R = rotateMatrix(0.05);
-      var T1 = translateMatrix(-speed, 0);
-      var T1r = translateMatrix(speed, 0);
-      var T2 = translateMatrix(speed, speed);
-      var T2r = translateMatrix(-speed, -speed);
-      var T3 = translateMatrix(-speed, speed);
-      var T3r = translateMatrix(speed, -speed);
-      var T4 = translateMatrix(speed, -speed);
-      var T4r = translateMatrix(-speed, speed);
-      var T5 = translateMatrix(0, -speed);
-      var T5r = translateMatrix(0, speed);
-      var T6 = T3r;
-      var T6r = T3;
+       R = rotateMatrix(0.01);
+       T1 = translateMatrix(-speed, 0.01);
+       T1r = translateMatrix(speed, 0);
+       T2 = translateMatrix(speed, speed);
+       T2r = translateMatrix(-speed, -speed);
+       T3 = translateMatrix(speed, -speed);
+       T3r = translateMatrix(-speed, speed);
+       T4 = translateMatrix(0.01, -speed);
+       T4r = translateMatrix(0, speed);
+       T5 = T1r;
+       T5r = T1;
 
       pushMatrix(R);
+      
+
       
       rep(T1, a);
       graphics.fillStyle = "teal";
@@ -148,24 +148,19 @@
       rep(T2r, a);
 
       rep(T3, a);
-      graphics.fillStyle = "wheat";
-      graphics.fillRect(30, 30, 60, 60);
-      rep(T3r, a);
-
-      rep(T4, a);
       graphics.fillStyle ="peru";
       graphics.fillRect(50, 50, 50, 50);
-      rep(T4r, a); 
+      rep(T3r, a); 
       
-      rep(T5, a);
+      rep(T4, a);
       graphics.fillStyle ="ivory";
       graphics.fillRect(5, 5, 30, 30);
-      rep(T5r, a);
+      rep(T4r, a);
 
-      rep(T6, a);
+      rep(T5, a);
       graphics.fillStyle = "seagreen";
       graphics.fillRect(0, 0, 50, 50);
-      rep(T6r, a);
+      rep(T5r, a);
     }
     
     
@@ -174,6 +169,7 @@
         T = translateMatrix(250, 170);
         pushMatrix(T);
         graphics.fillRect(0,0,20,20);
+        
         //https://www.w3schools.com/jsref/met_win_setinterval.asp
         var interval = setInterval(animate, 10);
         
@@ -193,11 +189,11 @@
 
 </head>
 <body onload="init()">
-   <p style=color:brown;>See more work here:</p>
+   <p style=color:white;>See more work here:</p>
   <a href="index.html">Eleni's Practice Transformation Matrices</a><br>
   <a href="fig8.html">Eleni's Figure 8</a><br>
   <p></p>
   <p></p>
   <canvas id="theCanvas" width="500" height="500"></canvas>
 </body>
-</html>    
+</html>  
