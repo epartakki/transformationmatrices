@@ -18,21 +18,15 @@
     var a = 0;
     var b = 0;
 
-    function newMatrix(rows, cols) {
+        //New Matrix
+        function newMatrix(rows, cols) {
       var newM = new Array(rows);
       for (let i = 0; i < rows; i++) {
         newM[i] = new Array(cols)
       }
     }
-
-    function identityMatrix() {
-      var I = new Array(3);
-      I[0] = [1, 0, 0];
-      I[1] = [0, 1, 0];
-      I[2] = [0, 0, 1];
-      return I;
-    }
-
+  
+    //Matrix Multiplication
     function matrixMultiply(M1, M2) {
       var rows = M1.length;
       var cols = M2[0].length;
@@ -44,7 +38,6 @@
           newM[i][j] = 0;
         }
       }
-
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
           for (let term = 0; term < rows; term++) {
@@ -55,6 +48,16 @@
       return newM;
     }
 
+    //Identity from 2D Transformation Summary
+    function identityMatrix() {
+        var I = new Array(3);
+        I[0] = [1, 0, 0];
+        I[1] = [0, 1, 0];
+       I[2] = [0, 0, 1];
+       return I;
+    }
+
+    //Scaling from 2D Transformation Summary
     function scaleMatrix(sx, sy) {
       var S = new Array(3);
       S[0] = [sx, 0, 0];
@@ -63,6 +66,7 @@
       return S;
     }
 
+    //Rotation from 2D Transformation Summary
     function rotateMatrix(theta) {
       var R = new Array(3);
       R[0] = [Math.cos(theta), -1 * Math.sin(theta), 0];
@@ -71,6 +75,7 @@
       return R;
     }
 
+    //Translation from 2D Transformation Summary
     function translateMatrix(tx, ty) {
       var T = new Array(3);
       T[0] = [1, 0, tx];
@@ -79,6 +84,7 @@
       return T;
     }
 
+    //Reflection from 2D Transformation Summary
     function reflectionMatrix() {
       var F = new Array(3);
       F[0] = [-1, 0, 0];
@@ -87,6 +93,7 @@
       return F;
     }
 
+    //Shear from 2D Transformation Summary
     function shearMatrix(lambda) {
       var H = new Array(3);
       H[0] = [1, 0, 0];
